@@ -1,5 +1,115 @@
 <p id="notice"><%= notice %></p>
 
+
+<div class="col-sm-6">
+
+  <div class="card gedf-card  w-55">
+    <div class="card-header" style="background-color: rgba(255, 255, 255, 1); ">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="mr-2">
+            <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+          </div>
+          <div class="ml-2">
+            <div class="h5 m-0">@LeeCross</div>
+            <div class="h7 text-muted">Miracles Lee Cross</div>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
+            Cras purus odio vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
+            fringilla. Donec lacinia congue felis in faucibus.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="card-body py-0 px-0">
+
+      <img src="https://picsum.photos/500/600" width="100%" alt="...">
+
+
+      <ul class="list-unstyled">
+        <li class="media my-4 px-3">
+          <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+          <div class="media-body">
+            <h5 class="mt-0 mb-1">List-based media object</h5>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio,
+            vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec
+            lacinia congue felis in faucibus.
+          </div>
+        </li>
+        <li class="media my-4 px-3">
+          <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+          <div class="media-body">
+            <h5 class="mt-0 mb-1">List-based media object</h5>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio,
+            vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec
+            lacinia congue felis in faucibus.
+          </div>
+        </li>
+
+      </ul>
+
+
+      <form class="form-row">
+        <div class="form-group col-md-10">
+          <%# <div class="form-group mx-sm-5 mb-2"> %>
+          <textarea class="form-control" id="comment" placeholder="write a comment" rows="2"></textarea>
+        </div>
+        <div class="form-group col-md-2">
+          <button type="submit" class="btn btn-primary mt-3">Post</button>
+        </div>
+      </form>
+
+
+
+    </div>
+    <div class="card-footer">
+      <%# <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a> %>
+      <a href="#" class="card-link"><i class="fa fa-comment"></i>More Comments<span class="badge badge-primary">9</span></a>
+      <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Show</a>
+
+      <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Edit</a>
+      <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Destroy</a>
+
+    </div>
+  </div>
+
+</div>
+<!-- Post /////-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <h1>Posts</h1>
 
 <table>
@@ -13,41 +123,40 @@
   </thead>
 
   <tbody>
-  
+
     <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.title %></td>
-        <td><%= post.content %></td>
-        <td><%= post.id %></td>
-        <td>
+    <tr>
+      <td><%= post.title %></td>
+      <td><%= post.content %></td>
+      <td><%= post.id %></td>
+      <td>
         <div class="panel-group" id="accordion">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" 
-              href="#<%= "link".concat( post.id.to_s) %>">
-              View comments <span><%= post.comments.count%></span>
-            </a>
-          </h4>
-                    <%= render partial: 'comments/form', :locals => {:comment => Comment.new, :id =>post.id} %>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#<%= "link".concat( post.id.to_s) %>">
+                  View comments <span><%= post.comments.count%></span>
+                </a>
+              </h4>
+              <%= render partial: 'comments/form', :locals => {:comment => Comment.new, :id =>post.id} %>
 
-        </div>
-        <div id="<%= "link".concat( post.id.to_s) %>" class="panel-collapse collapse">
-          <div class="panel-body">
-          <%= render partial: 'comment', collection: post.comments.reverse %>
+            </div>
+            <div id="<%= "link".concat( post.id.to_s) %>" class="panel-collapse collapse">
+              <div class="panel-body">
+                <%= render partial: 'comment', collection: post.comments.reverse %>
 
-              ### The comment form comes here ###<br/>
-              ### render :partial => 'comment/form'
+                ### The comment form comes here ###<br />
+                ### render :partial => 'comment/form'
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
 
-        </td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      </td>
+      <td><%= link_to 'Show', post %></td>
+      <td><%= link_to 'Edit', edit_post_path(post) %></td>
+      <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
     <% end %>
   </tbody>
 </table>
@@ -55,8 +164,3 @@
 <br>
 
 <%= link_to 'New Post', new_post_path %>
-
-
- 
-    
-    
