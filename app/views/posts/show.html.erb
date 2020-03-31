@@ -12,7 +12,10 @@
 
 <p>
   <strong>Image:</strong>
-  <%= image_tag @post.image.url unless @post.image.nil?%>
+  <%#= image_tag @post.image.url unless @post.image.nil?%>
+    <% unless @post.image.blank? %>
+   <%= image_tag @post.image.url %>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
