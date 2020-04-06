@@ -1,88 +1,134 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <a class="navbar-brand" href="/">
+      <img src="https://facebookbrand.com/wp-content/uploads/2019/04/f_logo_RGB-Hex-Blue_512.png" width="30" height="30" class="d-inline-block align-top" alt="">
+Fb clone</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto mx-auto">
+      <li class="nav-item active">
+        <%= button_to 'New Post', new_post_path ,method: :get, :class => 'btn btn-primary'%>
+        <%# <button type="button" class="btn btn-info">New post</button> %>
+      </li>
+      
+      
+     
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
 <p id="notice"><%= notice %></p>
-<%= link_to 'New Post', new_post_path %>
-<div class="col-sm-6">
-<% @posts.each do |post| %>
 
 
-  <div class="card gedf-card  w-55 mb-3">
-    <div class="card-header" style="background-color: rgba(255, 255, 255, 1); ">
-      <div class="d-flex justify-content-between align-items-center">
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="mr-2">
-            <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+<div class="container-md mt-5">
+  <%#= link_to 'New Post', new_post_path %>
+  <div class="row mb-3  justify-content-md-center">
+    <div class="col-7">
+      <% @posts.each do |post| %>
+
+
+      <div class="card gedf-card  w-55 mb-3">
+        <div class="card-header" style="background-color: rgba(255, 255, 255, 1); ">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="mr-2">
+                <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+              </div>
+              <div class="ml-2">
+                <div class="h5 m-0">@LeeCross</div>
+                <div class="h7 text-muted">Miracles Lee Cross</div>
+                <% unless post.content.blank? %>
+                <%= post.content %></td>
+                <% end %>
+              </div>
+            </div>
+
           </div>
-          <div class="ml-2">
-            <div class="h5 m-0">@LeeCross</div>
-            <div class="h7 text-muted">Miracles Lee Cross</div>
-             <% unless post.content.blank? %>
-      <%= post.content %></td>
-       <% end %>
-          </div>
+
         </div>
+        <div class="card-body py-0 px-0">
 
+          <%# <img src="https://picsum.photos/300/200" width="100%" alt="..."> %>
+          <% unless post.image.blank? %>
+          <%= image_tag post.image.url , class: "img-fluid"%>
+          <% end %>
+          <%= render partial: 'comment', collection: post.comments.last(2).reverse %>
+
+          <%= render partial: 'comments/form', :locals => {:comment => Comment.new, :id =>post.id} %>
+
+
+        </div>
+        <div class="card-footer ">
+          <a href="#" class="card-link btn btn-link"><i class="fa fa-comment "></i>All Comments<span
+              class="badge badge-primary"><%= post.comments.count%></span></a>
+          <%= link_to 'Show', post, class:'card-link btn btn-link' %>
+          <%= link_to 'Edit', edit_post_path(post), class:'card-link btn btn-link' %>
+          <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } , class:'card-link btn btn-link'%>
+
+        </div>
       </div>
 
+      <% end %>
+
     </div>
-    <div class="card-body py-0 px-0">
-
-      <%# <img src="https://picsum.photos/300/200" width="100%" alt="..."> %>
-<% unless post.image.blank? %>
-   <%= image_tag post.image.url , class: "img-fluid"%>
-  <% end %>
-
-      <ul class="list-unstyled">
-      <%= render partial: 'comment', collection: post.comments.reverse.last(2) %>
-        <%# <li class="media my-4 pl-4">
-          <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
-          <div class="media-body">
-            <h5 class="mt-0 mb-1">List-based media object</h5>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio,
-            vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec
-            lacinia congue felis in faucibus.
+    <div class="col-3 offset-1 ">
+      <ul class="list-group " id="user-list">
+      <li class="list-group-item">
+      <div class="row">
+            <div class="col-md-12 col-12">         
+                  <h5 class="font-weight-bold mb-1 text-center"> Users</h5>
+                     </div>
+          </div>
+          </li>
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-md-12 col-12">
+              <div class="row">
+                <div class="col-md-4 col-4 user-img text-center pt-1">
+                  <img src="http://nicesnippets.com/demo/cs-image2.png" width="45" alt="Seth Frazier"
+                    class="img-responsive img-circle rounded-circle" />
+                </div>
+                <div class="col-md-8 col-8">
+                  <h6 class="font-weight-bold mb-1">Nick asdfadsf asdfsadf Daniel</h6>
+                  <div class="user-detail">
+                    <p class="m-0"><i class="fa fa-phone mr-1" aria-hidden="true"></i> +91 1234567890</p>
+                    <p class="m-0"><i class="fa fa-envelope mr-1" aria-hidden="true"></i> example@gmail.com</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </li>
-        <li class="media my-4 pl-4">
-          <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
-          <div class="media-body">
-            <h5 class="mt-0 mb-1">List-based media object</h5>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio,
-            vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec
-            lacinia congue felis in faucibus.
-          </div> %>
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-md-12 col-12">
+              <div class="row">
+                <div class="col-md-4 col-4 user-img text-center pt-1">
+                  <img src="http://nicesnippets.com/demo/cs-image2.png" width="50" alt="Seth Frazier"
+                    class="img-responsive img-circle rounded-circle" />
+                </div>
+                <div class="col-md-8 col-8">
+                  <h5 class="font-weight-bold mb-1">Nick asdfadsf asdfsadf Daniel</h5>
+                  <div class="user-detail">
+                    <p class="m-0"><i class="fa fa-phone mr-1" aria-hidden="true"></i> +91 1234567890</p>
+                    <p class="m-0"><i class="fa fa-envelope mr-1" aria-hidden="true"></i> example@gmail.com</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </li>
+        
 
-      </ul>
-<%= render partial: 'comments/form', :locals => {:comment => Comment.new, :id =>post.id} %>
-
-      <%# <form class="form-row">
-        <div class="form-group col-md-10">
-          <div class="form-group mx-sm-5 mb-2">
-          <textarea class="form-control" id="comment" placeholder="write a comment" rows="2"></textarea>
-        </div>
-        <div class="form-group col-md-2">
-          <button type="submit" class="btn btn-primary mt-3">Post</button>
-        </div>
-      </form> %>
-
-
-
-    </div>
-    <div class="card-footer ">
-      <a href="#" class="card-link"><i class="fa fa-comment"></i>More Comments<span class="badge badge-primary"><%= post.comments.count%></span></a>
-      <%= link_to 'Show', post, class:'card-link' %>
-       <%= link_to 'Edit', edit_post_path(post), class:'card-link' %>
-       <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } , class:'card-link'%>
-     
-    </div>
-  </div>
-
-<% end %>
+       
 
 </div>
-<!-- Post /////-->
-
-
-
-
-
+</div>
 
