@@ -85,9 +85,10 @@ Fb clone</a>
           <a href="#" class="card-link btn btn-link"><i class="fa fa-comment "></i>All Comments<span
               class="badge badge-primary"><%= post.comments.count%></span></a>
           <%= link_to 'Show', post, class:'card-link btn btn-link' %>
+           <% if current_user == post.user%>
           <%= link_to 'Edit', edit_post_path(post), class:'card-link btn btn-link' %>
           <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } , class:'card-link btn btn-link'%>
-
+<% end %>
         </div>
       </div>
 
