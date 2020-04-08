@@ -1,12 +1,4 @@
-<body class="container-fluid" style="background-image: url(<%= asset_path 'fbbg.jpg' %>);no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;                                                                           
-                                      ">
 
-
-<h1>Sign up</h1>
 <% if @user.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@user.errors.count, "error") %> prohibited this @user from being saved:</h2>
@@ -17,21 +9,70 @@
     </ul>
   </div>
 <% end %>
-<%= form_with(model: @user, local: true) do |f| %>
-  <%= f.label :name,"Full name" %>
-  <%= f.text_field :name %>
-  <%= f.label :email %>
-  <%= f.email_field :email %>
-   <%= f.label :image,"Your picture" %>
-    
-     <%= image_tag(@user.image.url) if @user.image && @user.image.url %>
-    <%= f.file_field :image %>
-    <%= f.hidden_field :image_cache %>
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
-  <%= f.submit "Create my account" %>
-<% end %>
 
-</body>
+<div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-9 col-lg-5 mx-auto">
+        <div class="card  my-5">
+          <div class="card-body">
+            <h4 class="card-title text-center">Sign UP</h4>
+
+           <%= form_with(model: @user, local: true) do |f| %>
+  
+  
+
+            <form class="form-signup">
+            
+            <div class="form-group row">
+    <label for="inputPassword" class="col-sm-3 col-form-label"><%= f.label :name,"Full name" %></label>
+    <div class="col-sm-9">
+      <%= f.text_field :name ,placeholder: 'your full name' , class: "form-control"%>
+    </div>
+  </div>
+
+    <div class="form-group row">
+    <label for="inputPassword" class="col-sm-3 col-form-label">  <%= f.label :email %>
+</label>
+    <div class="col-sm-9">
+      <%= f.email_field :email ,placeholder: 'email' , class: "form-control"%>
+
+    </div>
+  </div>
+
+    <div class="form-group row">
+    <label for="inputPassword" class="col-sm-3 col-form-label"><%= f.label :image,"Picture" %></label>
+    <div class="col-sm-9">
+    <%= f.file_field :image  , class: "form-control"%>
+    <%= f.hidden_field :image_cache %>
+     
+    </div>
+  </div>
+
+    <div class="form-group row">
+    <label for="inputPassword" class="col-sm-3 col-form-label"><%= f.label :password %></label>
+    <div class="col-sm-9">
+      <%= f.password_field :password,placeholder: 'password ' , class: "form-control" %>
+
+    </div>
+  </div>
+
+    <div class="form-group row">
+    <label for="inputPassword" class="col-sm-3 col-form-label"><%= f.label :password_confirmation,"confirm" %></label>
+    <div class="col-sm-9">
+      <%= f.password_field :password_confirmation ,placeholder: 'password confirmation' , class: "form-control" %>
+
+    </div>
+  </div>
+              
+
+              <%= f.submit "Create  account", class:"btn btn-lg btn-primary btn-block text-uppercase"  %>
+             
+              <hr class="my-4"><% end %>
+             you have no Account? <%= button_to "sign in", new_session_path, method: :get,   class:"btn btn-outline-primary" %>
+            </form>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
