@@ -49,11 +49,18 @@ Fb clone</a>
           <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex justify-content-between align-items-center">
               <div class="mr-2">
-                <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                <%# <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt=""> %>
+                  
+                  <% unless post.user.image.blank?%>
+   <%= image_tag post.user.image.url ,class: "img-responsive img-circle rounded-circle", width: "50"%>
+   <% else %>
+                              <%= image_tag "default_user.png" , class: "img-responsive img-circle rounded-circle", width: "50"%>
+
+  <% end %>
               </div>
               <div class="ml-2">
-                <div class="h5 m-0">@LeeCross</div>
-                <div class="h7 text-muted">Miracles Lee Cross</div>
+                <div class="h5 m-0">@<%= post.user.name %></div>
+                <div class="h7 text-muted"><%= post.user.email %></div>
                 <% unless post.content.blank? %>
                 <%= post.content %></td>
                 <% end %>
@@ -133,27 +140,7 @@ Fb clone</a>
  <% end %>
           </li>
         
-        <li class="list-group-item">
-          <div class="row">
-            <div class="col-md-12 col-12">
-              <div class="row">
-                <div class="col-md-4 col-4 user-img text-center pt-1">
-                  <img src="http://nicesnippets.com/demo/cs-image2.png" width="50" alt="Seth Frazier"
-                    class="img-responsive img-circle rounded-circle" />
-                </div>
-                <div class="col-md-8 col-8">
-                  <h5 class="font-weight-bold mb-1">Nick asdfadsf asdfsadf Daniel</h5>
-                  <div class="user-detail">
-                    <p class="m-0"><i class="fa fa-phone mr-1" aria-hidden="true"></i> +91 1234567890</p>
-                    <p class="m-0"><i class="fa fa-envelope mr-1" aria-hidden="true"></i> example@gmail.com</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
-        
-
+       
        
 
 </div>

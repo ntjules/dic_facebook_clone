@@ -2,9 +2,14 @@
             <ul class="list-unstyled">
 
    <li class="media my-2 pl-5 ml-5">
-          <img class="rounded-circle" width="50"  src="https://picsum.photos/50/50" alt="">
+          <% unless comment.user.image.blank?%>
+   <%= image_tag comment.user.image.url ,class: "img-responsive img-circle rounded-circle", width: "50"%>
+   <% else %>
+                              <%= image_tag "default_user.png" , class: "img-responsive img-circle rounded-circle", width: "50"%>
+
+  <% end %>
           <div class="media-body pl-1">
-                  <div class="h7 text-muted">Miracles Lee Cross</div>
+                  <div class="h7 text-muted"><%= comment.user.name %></div>
                   <label class="pl-2"><%= comment.content %></label>
                 </div>
           
