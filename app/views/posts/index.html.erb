@@ -24,6 +24,9 @@ Fb clone</a>
     <label class="navbar-brand" href="/">
     <% unless current_user.image.blank? %>
    <%= image_tag current_user.image.url ,class: "rounded-circle", width: "50"%>
+   <% else %>
+                              <%= image_tag "default_user.png" , class: "img-responsive img-circle rounded-circle", width: "50"%>
+
   <% end %>
 <%= current_user.name %>
 </label>
@@ -62,7 +65,6 @@ Fb clone</a>
         </div>
         <div class="card-body py-0 px-0">
 
-          <%# <img src="https://picsum.photos/300/200" width="100%" alt="..."> %>
           <% unless post.image.blank? %>
           <%= image_tag post.image.url , class: "img-fluid"%>
           <% end %>
@@ -93,26 +95,44 @@ Fb clone</a>
                   <h5 class="font-weight-bold mb-1 text-center"> Users</h5>
                      </div>
           </div>
-          </li>
-        <li class="list-group-item">
+
+          <% @users.each do |user| %>
+          
+
+           
+
+          
+<li class="list-group-item">
           <div class="row">
             <div class="col-md-12 col-12">
               <div class="row">
                 <div class="col-md-4 col-4 user-img text-center pt-1">
-                  <img src="http://nicesnippets.com/demo/cs-image2.png" width="45" alt="Seth Frazier"
-                    class="img-responsive img-circle rounded-circle" />
+                  <% unless user.image.blank? %>
+          <%= image_tag user.image.url , class: "img-responsive img-circle rounded-circle", width: "50"%>
+                    <% else %>
+                              <%= image_tag "default_user.png" , class: "img-responsive img-circle rounded-circle", width: "50"%>
+
+          <% end %>
+                    
                 </div>
                 <div class="col-md-8 col-8">
-                  <h6 class="font-weight-bold mb-1">Nick asdfadsf asdfsadf Daniel</h6>
+                  <h6 class="font-weight-bold mb-1"><% unless user.name.blank? %>
+                <%= user.name %></td>
+           <% end %></h6>
                   <div class="user-detail">
-                    <p class="m-0"><i class="fa fa-phone mr-1" aria-hidden="true"></i> +91 1234567890</p>
-                    <p class="m-0"><i class="fa fa-envelope mr-1" aria-hidden="true"></i> example@gmail.com</p>
+                    <%# <p class="m-0"><i class="fa fa-phone mr-1" aria-hidden="true"></i> +91 1234567890</p> %>
+                    <p class="m-0"><i class="fa fa-envelope mr-1" aria-hidden="true"></i>  <% unless user.email.blank? %>
+                <%= user.email %></td>
+           <% end %></p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </li>
+ <% end %>
+          </li>
+        
         <li class="list-group-item">
           <div class="row">
             <div class="col-md-12 col-12">
