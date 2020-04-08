@@ -1,4 +1,4 @@
-<body class="container-fluid" style="background-image: url(<%= asset_path 'fbbg.jpg' %>);no-repeat center center fixed; 
+<body class="container-md" style="background-image: url(<%= asset_path 'fbbg.jpg' %>);no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -6,13 +6,40 @@
                                       ">
 
 
-<h1>Log in</h1>
-<%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
-  <%= f.label :email %>
-  <%= f.email_field :email %>
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-  <%= f.submit "Log in" %>
-<% end %>
 
+<div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h4 class="card-title text-center">Sign In</h4>
+
+            <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+
+  
+  
+
+            <form class="form-signin">
+              <div class="form-label-group">
+              <%= f.email_field :email, placeholder: 'email', class:"form-control", required:true %>
+                
+              </div>
+
+              <div class="form-label-group mt-3 mb-4">
+              <%= f.password_field :password, placeholder: '********', class:"form-control" , required:true %>
+                
+              </div>
+
+              
+              <%= f.submit "Log in", class:"btn btn-lg btn-primary btn-block text-uppercase" %>
+              <hr class="my-4"><% end %>
+             you have no Account? <%= button_to "sign up", new_user_path, method: :get,   class:"btn btn-outline-primary" %>
+            </form>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
+
