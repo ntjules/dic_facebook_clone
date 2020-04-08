@@ -17,11 +17,17 @@ Fb clone</a>
       
      
     </ul>
-    <form class="form-inline my-2 my-lg-0">
+    <%# <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-    <%= link_to "Logout", session_path(current_user.id), method: :delete %>
+    </form> %>
+    <label class="navbar-brand" href="/">
+    <% unless current_user.image.blank? %>
+   <%= image_tag current_user.image.url ,class: "rounded-circle", width: "50"%>
+  <% end %>
+<%= current_user.name %>
+</label>
+    <%= button_to "Logout", session_path(current_user.id), method: :delete ,class: "btn btn-danger"%>
   </div>
 </nav>
 
