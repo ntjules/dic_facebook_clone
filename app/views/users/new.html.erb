@@ -1,3 +1,11 @@
+<body class="container-fluid" style="background-image: url(<%= asset_path 'fbbg.jpg' %>);no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;                                                                           
+                                      ">
+
+
 <h1>Sign up</h1>
 <% if @user.errors.any? %>
   <div id="error_explanation">
@@ -25,3 +33,5 @@
   <%= f.password_field :password_confirmation %>
   <%= f.submit "Create my account" %>
 <% end %>
+
+</body>
