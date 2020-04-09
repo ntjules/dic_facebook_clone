@@ -11,29 +11,74 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  
+
+
+
+<div class="container">
+    <div class="row mb-3  justify-content-md-center">
+      <div class="col-6">
+        <div class="card  my-5">
+          <div class="card-body">
+            <h4 class="card-title text-center">Post</h4>
+<hr class="my-4">
+        
+            <form >
+
+<div class="form-group row">
+    <label for="inputPassword" class="col-sm-3 col-form-label"><%= form.label :content %></label>
+    <div class="col-sm-9">
+    
+     <%= form.text_area :content, placeholder:"write a comment" ,class:"form-control"%>
+     
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
 
-  <div class="field">
-    <%= form.label :image,"upload image" %>
-    <%#= form.text_area :image %>
-     <%= image_tag(@post.image.url) if @post.image && @post.image.url %>
+  <div class="form-group row">
+     <%= form.label :image,"upload image", class: "col-sm-3 col-form-label" %>
+    <div class="col-sm-9">
+    
+    
     <%= form.file_field :image %>
     <%= form.hidden_field :image_cache %>
-      <%#= form.file_field :image%>
-
-
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit :class => 'btn btn-primary', data: { confirm: 'Do you realy want to post this?' }%>
+            
 
-  </div>
+              <div class="text-center ">
+             <%= form.submit :class => 'btn btn-primary btn-lg text-uppercase' , data: { confirm: 'Do you realy want to post this?' }%>
+</div>
+              <hr class="my-4">
+              <% end %>
+            </form>
+            
+          </div>
+        </div>
+      </div>
+       <%  if @post.image && @post.image.url %>
+    <div class="col-5 mt-5">
+      <ul class="list-group " id="user-list">
+      
+      <div class="row">
+            <div class="col-md-12 col-12">         
+                  <% unless post.image.blank? %>
+          <%= image_tag @post.image.url , class: "img-fluid"%>
+          <% end %>
+                     </div>
+          </div>
+
+        
+          
+        
+       
+       
+
+</div>
 <% end %>
+    </div>
+  </div>
+
+
+

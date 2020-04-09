@@ -1,5 +1,6 @@
-<h1>New Post</h1>
 
+<%= render partial: 'topbar/top' %>
 <%= render 'form', post: @post %>
-
-<%= link_to 'Back', posts_path %>
+<div class="text-center">
+<%= link_to 'Back', posts_path ,class:"btn btn-outline-primary"%>
+</div>

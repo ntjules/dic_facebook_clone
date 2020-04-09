@@ -1,40 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-  <a class="navbar-brand" href="/">
-      <img src="https://facebookbrand.com/wp-content/uploads/2019/04/f_logo_RGB-Hex-Blue_512.png" width="30" height="30" class="d-inline-block align-top" alt="">
-Fb clone</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto mx-auto">
-      <li class="nav-item active">
-        <%= button_to 'New Post', new_post_path ,method: :get, :class => 'btn btn-primary'%>
-        <%# <button type="button" class="btn btn-info">New post</button> %>
-      </li>
-      
-      
-     
-    </ul>
-    <%# <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form> %>
-    <label class="navbar-brand" href="/">
-    <% unless current_user.image.blank? %>
-   <%= image_tag current_user.image.url ,class: "rounded-circle", width: "50"%>
-   <% else %>
-                              <%= image_tag "default_user.png" , class: "img-responsive img-circle rounded-circle", width: "50"%>
-
-  <% end %>
-<%= current_user.name %>
-</label>
-    <%= button_to "Logout", session_path(current_user.id), method: :delete ,class: "btn btn-danger"%>
-  </div>
-</nav>
-
-<p id="notice"><%= notice %></p>
+<%= render partial: 'topbar/top' %>
+<p class="py-3" id="notice"><%= notice %></p>
 
 
 <div class="container-md mt-5 welcome">
