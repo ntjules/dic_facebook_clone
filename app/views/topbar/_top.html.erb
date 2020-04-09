@@ -25,7 +25,7 @@ Fb clone</a>
     <% unless current_user.image.blank? %>
    <%= image_tag current_user.image.url ,class: "rounded-circle", width: "50"%>
    <% else %>
-                              <%= image_tag "default_user.png" , class: "img-responsive img-circle rounded-circle", width: "50"%>
+                              <%= image_tag asset_path('default_user.png') , class: "img-responsive img-circle rounded-circle", width: "50"%>
 
   <% end %>
 <%= current_user.name %>
