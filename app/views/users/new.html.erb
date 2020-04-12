@@ -1,4 +1,9 @@
-
+ <body class="container-md" style="background-image: url(<%= asset_path('fbbg.jpg') %>);no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;                                                                           
+                                      "> 
 <% if @user.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@user.errors.count, "error") %> prohibited this @user from being saved:</h2>
@@ -13,7 +18,7 @@
 <div class="container">
     <div class="row">
       <div class="col-sm-12 col-md-9 col-lg-5 mx-auto">
-        <div class="card  my-5">
+        <div class="card">
           <div class="card-body">
             <h4 class="card-title text-center">Sign UP</h4>
 
