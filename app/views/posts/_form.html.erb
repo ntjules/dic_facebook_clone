@@ -1,4 +1,5 @@
-<%= form_with(model: post, local: true) do |form| %>
+<%= form_with(model: post, local: true, html: { multipart: true }, url: choose_new_or_edit ) do |form| %>
+
   <% if post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -36,10 +37,12 @@
 
 
   <div class="form-group row">
-     <%= form.label :image,"upload image", class: "col-sm-3 col-form-label" %>
+      <label  class="col-sm-3 col-form-label"><%= form.label :image,"upload image" %></label>
+
+     
     <div class="col-sm-9">
     
-    
+     <%= form.hidden_field :user_id, :value => current_user.id %>
     <%= form.file_field :image %>
     <%= form.hidden_field :image_cache %>
     </div>
@@ -48,7 +51,9 @@
             
 
               <div class="text-center ">
-             <%= form.submit :class => 'btn btn-primary btn-lg text-uppercase' , data: { confirm: 'Do you realy want to post this?' }%>
+    <%= form.submit :class => 'btn btn-primary btn-lg text-uppercase'%>
+    <%#= form.submit :class => 'btn btn-primary btn-lg text-uppercase' , data: { confirm: 'Do you realy want to post this?' } %>
+
 </div>
               <hr class="my-4">
               <% end %>
@@ -68,12 +73,6 @@
           <% end %>
                      </div>
           </div>
-
-        
-          
-        
-       
-       
 
 </div>
 <% end %>
