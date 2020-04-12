@@ -39,7 +39,8 @@
         <div class="card-body py-0 px-0">
 
           <% unless @post.image.blank? %>
-          <%= image_tag @post.image.url , class: "img-fluid"%>
+          <%= image_tag @post.image.url, 
+      onerror: 'this.error=null;this.src="notfound.png"' , class: "img-fluid"%>
           <% end %>
           <%= render partial: 'comment', collection: @post.comments.last(2).reverse %>
 
